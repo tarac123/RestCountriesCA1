@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState,  } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router';
 import CountryCard from '../components/CountryCard';
 
 export default function Home () {
@@ -16,12 +17,17 @@ export default function Home () {
 
     let countryCards = countriesList.map((country) => {
         return (
+            <Link 
+                key={country.cca3} 
+                to={`/country/${country.name.common}`}
+                style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+            >
                 <CountryCard 
-                    key={country.cca3}
                     flagImg={country.flags.png}
                     name={country.name.common}
                     capital={country.capital}
                 />
+            </Link>
         );
     });
 
