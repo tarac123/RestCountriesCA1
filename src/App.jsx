@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router';
 
 //import components
 import Navbar from './components/Navbar';
-import CountryCard from './components/CountryCard';
 
 //import pages
 import Home from './pages/Home';
