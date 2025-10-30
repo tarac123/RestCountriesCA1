@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
-import CountryCard from '../components/CountryCard';
+import CountryCard from '../components/CountryCard.jsx';
 
 export default function Home () {
     const [countriesList, setCountriesList] = useState([]);
@@ -15,7 +15,7 @@ export default function Home () {
              .catch(error => console.log(error));
     }, []);
 
-    // Group countries by region
+    // group countries by region
     const groupedCountries = countriesList.reduce((acc, country) => {
         const region = country.region || 'Other';
         if (!acc[region]) {
@@ -26,15 +26,30 @@ export default function Home () {
     }, {});
 
     return (
-        <div className="min-h-screen bg-gray-50 p-8">
+        <div style={{ 
+            minHeight: '100vh', 
+            backgroundColor: '#f9fafb', 
+            padding: '32px' 
+        }}>
             {Object.keys(groupedCountries).sort().map((region) => (
-                <div key={region} className="mb-12">
-                    <h2 className="text-3xl font-bold mb-6">{region}</h2>
-                    <div className="grid grid-cols-4 gap-6">
+                <div key={region} style={{ marginBottom: '48px' }}>
+                    <h2 style={{ 
+                        fontSize: '30px', 
+                        fontFamily: 'Calistoga',
+                        marginBottom: '24px' 
+                    }}>
+                        {region}
+                    </h2>
+                    <div style={{ 
+                        display: 'grid', 
+                        gridTemplateColumns: 'repeat(4, 1fr)', 
+                        gap: '54px' 
+                    }}>
                         {groupedCountries[region].map((country) => (
                             <Link 
                                 key={country.cca3} 
                                 to={`/country/${country.name.common}`}
+                                style={{ textDecoration: 'none' }}
                             >
                                 <CountryCard 
                                     flagImg={country.flags.png}
