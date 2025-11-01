@@ -1,6 +1,28 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Navbar() {
+    const navigate = useNavigate();
+    const [countriesList, setCountriesList] = useState([]);
+
+    useEffect(() => {
+        axios.get('https://restcountries.com/v3.1/all?fields=name')
+             .then(response => {
+                setCountriesList(response.data);
+             })
+             .catch(error => console.log(error));
+    }, []);
+
+    const exploreRandomCountry = (e) => {
+        e.preventDefault();
+        if (countriesList.length > 0) {
+            const randomIndex = Math.floor(Math.random() * countriesList.length);
+            const randomCountry = countriesList[randomIndex];
+            navigate(`/country/${randomCountry.name.common}`);
+        }
+    };
+
     return (
         <nav style={{ 
             backgroundColor: '#059669',
@@ -26,7 +48,13 @@ export default function Navbar() {
                 }}>
 
                     <Link to="/" style={{ color: 'white', textDecoration: 'underline' }}>Home</Link>
-                    <Link to="/explore" style={{ color: 'white', textDecoration: 'underline' }}>Explore</Link>
+                    <a 
+                        href="/explore" 
+                        onClick={exploreRandomCountry} 
+                        style={{ color: 'white', textDecoration: 'underline', cursor: 'pointer' }}
+                    >
+                        Explore Random
+                    </a>
                 </div>
             </div>
         </nav>
