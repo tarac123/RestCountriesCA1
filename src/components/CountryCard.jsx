@@ -1,56 +1,21 @@
 export default function CountryCard({ flagImg, name, capital }) {
     return (
-        <div style={{
-            backgroundColor: 'white',
-            borderRadius: '8px',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
-            overflow: 'hidden',
-            transition: 'box-shadow 0.3s ease'
-        }}
-        onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'}
-        onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)'}
-        >
-            {/* Flag Image */}
-            <div style={{ 
-                width: '100%', 
-                height: '230px', 
-                backgroundColor: '#e5e7eb' 
-            }}>
-                <img 
+        <div className="card bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300 h-full">
+            <figure className="h-48 bg-gray-100">
+                <img
                     src={flagImg} 
                     alt={`${name} flag`}
-                    style={{ 
-                        width: '100%', 
-                        height: '100%', 
-                        objectFit: 'fill' 
-                    }}
+                    className="w-full h-full object-cover"
                 />
-            </div>
-            
-            {/* Country info */}
-            <div style={{ padding: '16px' }}>
-                <h3 style={{ 
-                    fontSize: '18px', 
-                    fontFamily: 'Calistoga ', 
-                    color: '#111827', 
-                    marginBottom: '4px' 
-                }}>
-                    {name}
-                </h3>
-                <p style={{ 
-                    fontSize: '14px', 
-                    color: '#4b5563',
-                    marginBottom: '8px'
-                }}>
-                    <span style={{ fontWeight: '600' }}>Capital:</span> {capital ? capital[0] : 'N/A'}
+            </figure>
+            <div className="card-body p-4">
+                <h2 className="card-title text-lg text-gray-900">{name}</h2>
+                <p className="text-sm text-gray-600">
+                    <span className="font-semibold">Capital:</span> {capital ? capital[0] : 'N/A'}
                 </p>
-                <p style={{ 
-                    fontSize: '14px', 
-                    color: '#059669', 
-                    fontWeight: '500' 
-                }}>
-                    View more...
-                </p>
+                <div className="card-actions justify-end mt-2">
+                    <span className="text-accent-content text-sm font-semibold">View More...</span>
+                </div>
             </div>
         </div>
     );

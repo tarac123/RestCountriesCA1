@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -13,7 +13,7 @@ export default function Navbar() {
              })
              .catch(error => console.log(error));
     }, []);
-
+    // Explore Random evemt
     const exploreRandomCountry = (e) => {
         e.preventDefault();
         if (countriesList.length > 0) {
@@ -23,38 +23,25 @@ export default function Navbar() {
         }
     };
 
-    return (
-        <nav style={{ 
-            backgroundColor: '#059669',
-            color: 'white', padding: '20px 40px' }}>
-
-            <div style=
-            {{ 
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                maxWidth: '1700px',
-                margin: '0 auto' 
-                }}>
-
-                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-                    <h1 style={{ fontSize: 24, margin: 0 }}>Around<br/>The World</h1>
+return (
+        <nav className="bg-emerald-600 text-white py-5 px-10">
+            <div className="flex justify-between items-center max-w-7xl mx-auto">
+                <Link to="/" >
+                    <h1 className="text-2xl m-0 leading-tight">
+                        Around<br/>The World
+                    </h1>
                 </Link>
                 
-                <div style=
-                {{ 
-                    display: 'flex',
-                    gap: '32px' 
-                }}>
-
-                    <Link to="/" style={{ color: 'white', textDecoration: 'underline' }}>Home</Link>
-                    <a 
-                        href="/explore" 
+                <div className="flex gap-8">
+                    <Link to="/" className="no-underline underline hover:underline">
+                        Home
+                    </Link>
+                    <button 
                         onClick={exploreRandomCountry} 
-                        style={{ color: 'white', textDecoration: 'underline', cursor: 'pointer' }}
+                        className="no-underline underline hover:underline"
                     >
                         Explore Random
-                    </a>
+                    </button>
                 </div>
             </div>
         </nav>

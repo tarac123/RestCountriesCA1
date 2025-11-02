@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import CountryCard from '../components/CountryCard.jsx';
 
@@ -13,12 +13,14 @@ export default function Home() {
              .catch(err => console.log(err));
     }, []);
 
+    // filter countries based on search
     const filteredCountries = searchTerm 
         ? countriesList.filter(country => 
             country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
           )
         : null;
 
+     // Group countries by region
     const groupedCountries = countriesList.reduce((acc, country) => {
         const region = country.region || 'Other';
         if (!acc[region]) acc[region] = [];
@@ -29,42 +31,48 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-gray-50">
             <div className="bg-white border-b border-gray-200">
-                <div className="max-w-[1700px] mx-auto py-5">
+                <div className="max-w-7xl mx-auto py-5 px-4">
                     <div className="relative max-w-md">
-                        <svg className="absolute top-1/2 left-3 -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
                         <input
                             type="text"
                             placeholder="Search Countries..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
+                            className="input input-bordered w-full pl-10"
                         />
                     </div>
                 </div>
             </div>
-
-            <div className="px-[100px] pt-[50px]">
+        {/* Countries display section */}
+            <div className="max-w-7xl mx-auto px-4 pt-12">
                 {filteredCountries ? (
                     <div>
-                        <h2 className="text-[30px] font-['Calistoga'] mb-6">Search Results</h2>
-                        <div className="grid grid-cols-4 gap-[54px]">
+                        <h2 className="text-3xl font-bold mb-6">Search Results</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             {filteredCountries.map((country) => (
-                                <Link key={country.cca3} to={`/country/${country.name.common}`} className="no-underline">
-                                    <CountryCard flagImg={country.flags.png} name={country.name.common} capital={country.capital} />
+                                <Link key={country.cca3} to={`/country/${country.name.common}`}>
+                                    <CountryCard 
+                                        flagImg={country.flags.png} 
+                                        name={country.name.common} 
+                                        capital={country.capital} 
+                                    />
                                 </Link>
                             ))}
                         </div>
                     </div>
                 ) : (
+                     // show countries grouped by region
                     Object.keys(groupedCountries).sort().map((region) => (
                         <div key={region} className="mb-12">
-                            <h2 className="text-[30px] font-['Calistoga'] mb-6">{region}</h2>
-                            <div className="grid grid-cols-4 gap-[34px]">
+                            <h2 className="text-3xl font-bold mb-6">{region}</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                 {groupedCountries[region].map((country) => (
-                                    <Link key={country.cca3} to={`/country/${country.name.common}`} className="no-underline">
-                                        <CountryCard flagImg={country.flags.png} name={country.name.common} capital={country.capital} />
+                                    <Link key={country.cca3} to={`/country/${country.name.common}`}>
+                                        <CountryCard 
+                                            flagImg={country.flags.png} 
+                                            name={country.name.common} 
+                                            capital={country.capital} 
+                                        />
                                     </Link>
                                 ))}
                             </div>
