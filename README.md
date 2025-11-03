@@ -1,16 +1,19 @@
-# React + Vite
+# Around The World - What is it?
+An interactive web application that displays information about countries from around the world using the REST Countries API.
+Features
+Browse data for all countries worldwide.
+View detailed information about each country on dedicated single country page.
+Responsive design built with modern UI components.
+Fast and intuitive user experience.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Technologies Used
+React - JavaScript library for building the user interface
+Tailwind CSS - CSS framework for styling
+daisyUI - Component library built on Tailwind CSS
+REST Countries API - Data source for country information
+National Dishes API - Data source for national dishes information
 
-Currently, two official plugins are available:
+# Link to Hosted Website
+https://aroundtheworld-restcountries.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<img width="1888" height="869" alt="image" src="https://github.com/user-attachments/assets/8301204e-1168-452d-843c-96f2cd07cf65" />
